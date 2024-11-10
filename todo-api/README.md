@@ -9,3 +9,10 @@
 
 ### Angular Frontend
 
+## Auth Dependencies
+- Bcrypt: For Hashing Passwords
+- JwtService from Nestjs jwt
+
+## Object Relational Mapper
+- Typeorm
+

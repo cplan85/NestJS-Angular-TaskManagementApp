@@ -33,6 +33,7 @@ services:
       - postgres
     environment:
       DATABASE_URL: postgres://user:password@postgres:5432/db
+      JWT_SECRET: jwtsecretpass12345678
     ports:
       - "3000:3000"
     
