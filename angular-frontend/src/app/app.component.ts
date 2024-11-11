@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Test, TestService } from './services/test.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,9 +9,4 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   title = 'angular-frontend';
 
-  valueFromBackend$: Observable<Test>;
-
-  constructor(private _testService: TestService) {
-    this.valueFromBackend$ = this._testService.getUserById(1);
-  }
 }
