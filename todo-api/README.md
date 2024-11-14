@@ -6,12 +6,13 @@
 ## Setup Steps
 
 ### NestJS Backend API
-
-### Angular Frontend
+- Socket.IO
 
 ## Auth Dependencies
 - Bcrypt: For Hashing Passwords
 - JwtService from Nestjs jwt
+
+### Angular Frontend
 
 ## Object Relational Mapper
 - Typeorm

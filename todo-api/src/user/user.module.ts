@@ -13,5 +13,6 @@ import { DtoHelperService } from './dto/dto-helper.service';
   ],
   controllers: [UserController],
   providers: [UserService, DtoHelperService],
+  exports: [UserService]
 })
 export class UserModule {}

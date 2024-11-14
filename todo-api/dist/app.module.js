@@ -13,7 +13,21 @@ const todo_module_1 = require("./todo/todo.module");
 const user_module_1 = require("./user/user.module");
 const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
+const auth_middleware_1 = require("./auth.middleware");
+const user_controller_1 = require("./user/controllers/user.controller");
 let AppModule = class AppModule {
+    configure(consumer) {
+        consumer
+            .apply(auth_middleware_1.AuthMiddleware)
+            .exclude({
+            path: '/users',
+            method: common_1.RequestMethod.POST,
+        }, {
+            path: '/users/login',
+            method: common_1.RequestMethod.POST,
+        })
+            .forRoutes(user_controller_1.UserController);
+    }
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
@@ -32,5 +46,4 @@ exports.AppModule = AppModule = __decorate([
         ],
     })
 ], AppModule);
-console.log(process.env.DATABASE_URL, "Connection Carlos");
 //# sourceMappingURL=app.module.js.map
