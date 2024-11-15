@@ -6,7 +6,8 @@ import { UserI } from 'src/user/user.interfaces';
 import { UserService } from 'src/user/user.service';
 
 @WebSocketGateway({
-  namespace: 'todos'
+  namespace: 'todos',
+  cors: {origin: ['http://localhost:3000', 'http://localhost:4200']}
 })
 export class TodoGateway implements OnGatewayConnection {
   constructor(private userService: UserService, private authService: AuthService) {

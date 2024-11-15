@@ -13,6 +13,9 @@
 - JwtService from Nestjs jwt
 
 ### Angular Frontend
+- angular-jwt
+- socket.io-client
+- Angular-material
 
 ## Object Relational Mapper
 - Typeorm

@@ -45,7 +45,8 @@ let TodoGateway = class TodoGateway {
 exports.TodoGateway = TodoGateway;
 exports.TodoGateway = TodoGateway = __decorate([
     (0, websockets_1.WebSocketGateway)({
-        namespace: 'todos'
+        namespace: 'todos',
+        cors: { origin: ['http://localhost:3000', 'http://localhost:4200'] }
     }),
     __metadata("design:paramtypes", [user_service_1.UserService, auth_service_1.AuthService])
 ], TodoGateway);
