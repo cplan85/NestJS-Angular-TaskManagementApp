@@ -1,0 +1,12 @@
+<div class="item" [ngClass]="{
+    'urgencyEasy' : item?.urgency === 'NO PRIORITY',
+    'urgencyMedium' : item?.urgency === 'MEDIUM',
+    'urgencyUrgent' : item?.urgency === 'URGENT'
+}">
+<h3 [ngClass]="{'done': item?.status}">{{item?.title}}</h3>
+<p [ngClass]="{'done': item?.status}">{{item?.subtitle}}</p>
+
+<!-- <p>{{item?.text}}</p> -->
+</div>
+
+

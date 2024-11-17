@@ -1,1 +1,50 @@
-<p>dashboard works!</p>
+<div cdkDropListGroup style="margin: 50px">
+
+    <div class="list-container">
+        <h2>Backlog</h2>
+      
+        <div
+          cdkDropList
+          #todoList="cdkDropList"
+          [cdkDropListData]="backlogItems"
+          [cdkDropListConnectedTo]="[doneList]"
+          class="list"
+          (cdkDropListDropped)="drop($event)">
+          <app-card class="todo-item" *ngFor="let item of backlogItems" cdkDrag [item]="item"></app-card>
+        </div>
+    </div>
+    
+    
+    <div class="list-container">
+        <h2>To Do</h2>
+      
+        <div
+          cdkDropList
+          #todoList="cdkDropList"
+          [cdkDropListData]="todoItems"
+          [cdkDropListConnectedTo]="[doneList]"
+          class="list"
+          (cdkDropListDropped)="drop($event)">
+          <!-- @for (item of todo; track item) {
+            <div class="todo-item" cdkDrag>{{item}}</div>
+          } -->
+          <app-card class="todo-item" *ngFor="let item of todoItems" cdkDrag [item]="item"></app-card>
+        </div>
+      </div>
+      
+      <div class="list-container">
+        <h2>Done</h2>
+      
+        <div
+          cdkDropList
+          #doneList="cdkDropList"
+          [cdkDropListData]="doneItems"
+  
+          class="list"
+          (cdkDropListDropped)="drop($event)">
+          <app-card class="todo-item" *ngFor="let item of doneItems" cdkDrag [item]="item"></app-card>
+        </div>
+      </div>
+
+</div>
+

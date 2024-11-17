@@ -1,0 +1,21 @@
+.item {
+    padding: 20px 10px;
+    border-left: solid 3px;
+
+}
+
+.urgencyEasy {
+    border-left-color: green;
+}
+
+.urgencyMedium {
+    border-left-color: yellow;
+}
+
+.urgencyUrgent {
+    border-left-color: red;
+}
+
+.done {
+    text-decoration: line-through;
+}
