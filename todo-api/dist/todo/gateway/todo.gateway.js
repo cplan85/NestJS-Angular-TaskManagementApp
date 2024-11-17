@@ -12,16 +12,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TodoGateway = void 0;
 const common_1 = require("@nestjs/common");
 const websockets_1 = require("@nestjs/websockets");
+const socket_io_1 = require("socket.io");
 const auth_service_1 = require("../../auth/services/auth.service");
 const user_service_1 = require("../../user/user.service");
+const connection_service_1 = require("../services/connection.service");
+const todo_service_1 = require("../services/todo.service");
 let TodoGateway = class TodoGateway {
-    constructor(userService, authService) {
+    constructor(userService, authService, connectionService, todoService) {
         this.userService = userService;
         this.authService = authService;
+        this.connectionService = connectionService;
+        this.todoService = todoService;
+    }
+    async handleDisconnect(socket) {
+        await this.connectionService.deleteBySocketId(socket.id);
+        socket.disconnect();
     }
     async handleConnection(socket) {
         try {
-            const decodedToken = await this.authService.verifyJwt(socket.handshake.headers.authorization);
+            const token = socket.handshake.auth.Authorization.split(' ')[1];
+            const decodedToken = await this.authService.verifyJwt(token);
             const userId = decodedToken.user.id;
             const user = await this.userService.getOneUserById(userId);
             if (!user) {
@@ -30,6 +40,9 @@ let TodoGateway = class TodoGateway {
             }
             else {
                 console.log('do something', user);
+                await this.connectionService.create({ socketId: socket.id, connectedUser: user });
+                const todos = await this.todoService.findAll();
+                return this.server.to(socket.id).emit('todos', todos);
             }
         }
         catch {
@@ -43,11 +56,18 @@ let TodoGateway = class TodoGateway {
     }
 };
 exports.TodoGateway = TodoGateway;
+__decorate([
+    (0, websockets_1.WebSocketServer)(),
+    __metadata("design:type", socket_io_1.Server)
+], TodoGateway.prototype, "server", void 0);
 exports.TodoGateway = TodoGateway = __decorate([
     (0, websockets_1.WebSocketGateway)({
         namespace: 'todos',
         cors: { origin: ['http://localhost:3000', 'http://localhost:4200'] }
     }),
-    __metadata("design:paramtypes", [user_service_1.UserService, auth_service_1.AuthService])
+    __metadata("design:paramtypes", [user_service_1.UserService,
+        auth_service_1.AuthService,
+        connection_service_1.ConnectionService,
+        todo_service_1.TodoService])
 ], TodoGateway);
 //# sourceMappingURL=todo.gateway.js.map

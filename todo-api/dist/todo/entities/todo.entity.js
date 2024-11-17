@@ -9,44 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
-const connection_entity_1 = require("../../todo/entities/connection.entity");
+exports.Todo = void 0;
 const typeorm_1 = require("typeorm");
-let User = class User {
-    emailToLowerCase() {
-        this.email = this.email.toLowerCase();
-        this.username = this.username.toLowerCase();
-    }
+let Todo = class Todo {
 };
-exports.User = User;
+exports.Todo = Todo;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], User.prototype, "id", void 0);
+], Todo.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ unique: true }),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "username", void 0);
+], Todo.prototype, "status", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ unique: true }),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "email", void 0);
+], Todo.prototype, "title", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ select: false }),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
+], Todo.prototype, "subtitle", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => connection_entity_1.Connection, (connection) => connection.connectedUser),
-    __metadata("design:type", Array)
-], User.prototype, "connections", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Todo.prototype, "text", void 0);
 __decorate([
-    (0, typeorm_1.BeforeInsert)(),
-    (0, typeorm_1.BeforeUpdate)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], User.prototype, "emailToLowerCase", null);
-exports.User = User = __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Todo.prototype, "urgency", void 0);
+exports.Todo = Todo = __decorate([
     (0, typeorm_1.Entity)()
-], User);
-//# sourceMappingURL=user.entity.js.map
+], Todo);
+//# sourceMappingURL=todo.entity.js.map

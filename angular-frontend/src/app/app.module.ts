@@ -10,9 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 export const LOCALSTORAGE_KEY_NESTJS_TODO_APP = "nestjs_todo_app"
+
 export function tokenGetter() {
-  return localStorage.getItem(LOCALSTORAGE_KEY_NESTJS_TODO_APP);
+  if (typeof localStorage !== 'undefined') {
+    return localStorage.getItem(LOCALSTORAGE_KEY_NESTJS_TODO_APP);
+  }
+  return null;
 }
+
 
 @NgModule({
   declarations: [
