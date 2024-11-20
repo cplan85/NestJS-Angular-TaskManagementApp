@@ -1,0 +1,44 @@
+<form [formGroup]="form" (ngSubmit)="onCreateTodo()">
+
+    <h2>Create new Todo Item</h2>
+
+    <mat-form-field>
+        <label for="title">Title</label>
+        <input id="title" matInput placeholder="Title" formControlName="title">
+        <mat-error *ngIf="title.touched && title.hasError('required')">Title is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <label for="subtitle">Subtitle</label>
+        <input id="subtitle" matInput placeholder="Sub Title" formControlName="subtitle">
+        <mat-error *ngIf="title.touched && title.hasError('required')">Sub Title is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="text">Subtitle</label>
+        <input id="text" matInput placeholder="Text" formControlName="text">
+        <mat-error *ngIf="title.touched && title.hasError('required')">Text is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="text">Status</label>
+        <mat-select formControlName="status">
+            <mat-option *ngFor="let s of statusValues" [value]="s">{{s}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="text">Urgency</label>
+        <mat-select formControlName="status">
+            <mat-option *ngFor="let u of urgencyValues" [value]="u">{{u}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-hint *ngIf="!form.valid">Please fill out all the information correctly</mat-hint>
+
+      <div class="button">
+        <button mat-button type="submit" [disabled]="!form.valid">Create new</button>
+      </div>
+
+
+</form>

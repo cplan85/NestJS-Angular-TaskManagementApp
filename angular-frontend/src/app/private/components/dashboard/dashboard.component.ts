@@ -1,5 +1,7 @@
+import { CreateTodoComponent } from './../create-todo/create-todo.component';
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../../services/todo.service';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog'
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -7,7 +9,9 @@ import {
   CdkDrag,
   CdkDropList,
 } from '@angular/cdk/drag-drop';
-import { TodoItem } from '../../interfaces';
+import { TodoItem } from '../../private-module.interfaces';
+import { todoExampleItems } from '../../private-module.constants';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -16,9 +20,8 @@ import { TodoItem } from '../../interfaces';
 })
 export class DashboardComponent implements OnInit {
 
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  createTodoComponentDialogueRef: MatDialogRef<CreateTodoComponent> | undefined;
 
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
   backlogItems: TodoItem[] = [
 
@@ -27,33 +30,11 @@ export class DashboardComponent implements OnInit {
   todoItems: TodoItem[] = [];
   doneItems: TodoItem[] = [];
 
-  items: TodoItem[] = [
-    {
-      title: 'Hard Item',
-      subtitle: 'Hard Subtitle',
-      text: 'Hard Text',
-      status: "BACKLOG",
-      urgency: "NO PRIORITY"
-    },
-    {
-      title: 'Urgent Item',
-      subtitle: 'Urgent Subtitle',
-      text: 'Urgent Text',
-      status: "BACKLOG",
-      urgency: "URGENT"
-    },
-    {
-      title: 'Medium Item',
-      subtitle: 'Medium Subtitle',
-      text: 'Medium Text',
-      status: "TODO",
-      urgency: "MEDIUM"
-    }
-  ]
+  items: TodoItem[] = todoExampleItems
 
 
 
-  constructor (private todoService: TodoService) {
+  constructor (private todoService: TodoService, private matDialog: MatDialog) {
     
   }
 
@@ -76,6 +57,13 @@ export class DashboardComponent implements OnInit {
         event.currentIndex,
       );
     }
+  }
+
+  onShowCreateTodoDialog() {
+    this.matDialog.open(CreateTodoComponent, {
+      minHeight: '400px',
+      minWidth: '300px'
+    })
   }
 
 }

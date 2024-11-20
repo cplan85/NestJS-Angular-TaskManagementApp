@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 import { Injectable } from "@angular/core";
 import { tokenGetter } from '../../app.module';
-import { TodoItem } from '../interfaces';
+import { TodoItem } from '../private-module.interfaces';
 
 
 @Injectable({

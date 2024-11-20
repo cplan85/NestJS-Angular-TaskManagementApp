@@ -1,3 +1,4 @@
+import { FormControl } from "@angular/forms";
 import { UserI } from "../public/public.interfaces";
 export type Status = 'BACKLOG' | 'TODO' | 'DONE'
 export type Urgency = 'URGENT' | 'MEDIUM' | 'NO PRIORITY'
@@ -14,4 +15,12 @@ export interface TodoItem {
     text: string;
     urgency: Urgency;
 
+}
+
+export interface CreateTodoFormGroup {
+    status: FormControl<Status | null>;
+    title: FormControl<string | null>;
+    subtitle: FormControl<string | null>;
+    text: FormControl<string | null>;
+    urgency: FormControl<Urgency | null>;
 }
