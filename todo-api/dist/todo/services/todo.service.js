@@ -27,6 +27,30 @@ let TodoService = class TodoService {
     saveAll(todoItems) {
         return this.todoRepository.save(todoItems);
     }
+    save(todoItem) {
+        return this.todoRepository.save(todoItem);
+    }
+    async updateMultiple(todoItems) {
+        const updatePromises = todoItems.map(async (todoItem) => {
+            await this.todoRepository.update(todoItem.id, todoItem);
+            return this.todoRepository.findOne({
+                where: {
+                    id: todoItem.id
+                }
+            });
+        });
+        const updatedItems = await Promise.all(updatePromises);
+        return updatedItems;
+    }
+    async update(todoItem) {
+        await this.todoRepository.update(todoItem.id, todoItem);
+        const updatedItem = await this.todoRepository.findOne({
+            where: {
+                id: todoItem.id
+            }
+        });
+        return updatedItem;
+    }
 };
 exports.TodoService = TodoService;
 exports.TodoService = TodoService = __decorate([

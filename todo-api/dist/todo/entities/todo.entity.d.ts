@@ -6,4 +6,5 @@ export declare class Todo {
     subtitle: string;
     text: string;
     urgency: Urgency;
+    containerIndex: number;
 }

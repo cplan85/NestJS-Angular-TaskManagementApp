@@ -28,6 +28,10 @@ export class ConnectionService {
         })
     }
 
+    async findAll(): Promise<ConnectionI[]> {
+        return this.connectionRepo.find();
+    }
+
     async deleteBySocketId(socketId: string) {
         return this.connectionRepo.delete({socketId});
     }

@@ -22,6 +22,9 @@ export class Todo {
     @Column()
     urgency: Urgency
 
+    @Column()
+    containerIndex: number
+
     // createdBy?: UserI;
     // updatedBy?: UserI;
     // createdAt?: Date;

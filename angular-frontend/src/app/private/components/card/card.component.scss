@@ -1,19 +1,25 @@
 .item {
     padding: 20px 10px;
-    border-left: solid 3px;
+    border-left: solid 5px;
+    width: 100%;
+    background:white;
 
 }
 
 .urgencyEasy {
-    border-left-color: green;
+    border-left-color: rgb(122, 204, 28);
+    box-shadow: rgba(78, 138, 10, 0.15) 0px 48px 100px 0px;
 }
 
 .urgencyMedium {
-    border-left-color: yellow;
+
+    border-left-color: rgb(255, 240, 33);
+    box-shadow: rgba(160, 131, 15, 0.15) 0px 48px 100px 0px;
 }
 
 .urgencyUrgent {
-    border-left-color: red;
+    border-left-color: rgb(253, 28, 21);
+    box-shadow: rgba(179, 47, 14, 0.15) 0px 48px 100px 0px;
 }
 
 .done {

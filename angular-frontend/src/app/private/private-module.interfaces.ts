@@ -9,11 +9,14 @@ export interface TodoItem {
     createdAt?: Date;
     updatedAt?: Date;
 
+    containerIndex? : number;
+
     status: Status;
     title: string;
     subtitle: string;
     text: string;
     urgency: Urgency;
+    
 
 }
 

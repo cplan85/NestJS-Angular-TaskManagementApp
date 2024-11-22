@@ -6,6 +6,7 @@ import { UserI } from 'src/user/user.interfaces';
 import { UserService } from 'src/user/user.service';
 import { ConnectionService } from '../services/connection.service';
 import { TodoService } from '../services/todo.service';
+import { ConnectionI, TodoItem } from './todo.interface';
 
 @WebSocketGateway({
   namespace: 'todos',
@@ -30,6 +31,48 @@ export class TodoGateway implements OnGatewayConnection, OnGatewayDisconnect {
     await this.connectionService.deleteBySocketId(socket.id);
     socket.disconnect()
   }
+
+  @SubscribeMessage('addTodo')
+  async onAddTodo(socket: Socket, todoItem: TodoItem): Promise<void> {
+    //save new todoItem to our Database
+    const createTodoItem: TodoItem = await this.todoService.save(todoItem);
+
+    //publish the new todoItem to all connected Users
+    const connections: ConnectionI[] = await this.connectionService.findAll();
+
+    for(const connection of connections) {
+      this.server.to(connection.socketId).emit('addedTodo', createTodoItem)
+    }
+  }
+
+  @SubscribeMessage('updateTodo') 
+    async onUpdateTodo(socket: Socket, todoItem: TodoItem) {
+    
+    const updatedTodoItem: TodoItem = await this.todoService.update(todoItem)
+
+    const connections: ConnectionI[] = await this.connectionService.findAll();
+
+    for(const connection of connections) {
+      this.server.to(connection.socketId).emit('updatedTodo', updatedTodoItem)
+    }
+
+    }
+
+    //new
+    @SubscribeMessage('updateColumnTodos') 
+    async onUpdateColumnTodos(socket: Socket, todoItems: TodoItem[]) {
+      const updatedTodoItems: TodoItem[] = await this.todoService.updateMultiple(todoItems)
+
+
+          //publish the new todoItem to all connected Users
+    const connections: ConnectionI[] = await this.connectionService.findAll();
+
+    for(const connection of connections) {
+      this.server.to(connection.socketId).emit('updatedColumnTodos', updatedTodoItems)
+    }
+
+    }
+  
 
   async handleConnection(socket: Socket) {
 
@@ -61,7 +104,6 @@ export class TodoGateway implements OnGatewayConnection, OnGatewayDisconnect {
     } catch {
       console.log('disconnect user')
       return this.disconnect(socket);
-
     }
 
   }

@@ -33,6 +33,9 @@ let ConnectionService = class ConnectionService {
             }
         });
     }
+    async findAll() {
+        return this.connectionRepo.find();
+    }
     async deleteBySocketId(socketId) {
         return this.connectionRepo.delete({ socketId });
     }

@@ -7,6 +7,7 @@ export interface TodoItem {
     updatedBy?: UserI;
     createdAt?: Date;
     updatedAt?: Date;
+    containerIndex?: number;
     status: Status;
     title: string;
     subtitle: string;

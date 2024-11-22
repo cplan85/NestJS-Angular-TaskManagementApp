@@ -3,10 +3,9 @@
     'urgencyMedium' : item?.urgency === 'MEDIUM',
     'urgencyUrgent' : item?.urgency === 'URGENT'
 }">
-<h3 [ngClass]="{'done': item?.status}">{{item?.title}}</h3>
-<p [ngClass]="{'done': item?.status}">{{item?.subtitle}}</p>
-
-<!-- <p>{{item?.text}}</p> -->
+<h3 [ngClass]="{'done': item?.status === 'DONE'}">{{item?.title}}</h3>
+<p [ngClass]="{'done': item?.status === 'DONE'}">{{item?.subtitle}}</p>
+<!-- <small>{{item?.status}}</small> -->
 </div>
 
 

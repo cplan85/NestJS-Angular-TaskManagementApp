@@ -38,6 +38,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Todo.prototype, "urgency", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Todo.prototype, "containerIndex", void 0);
 exports.Todo = Todo = __decorate([
     (0, typeorm_1.Entity)()
 ], Todo);

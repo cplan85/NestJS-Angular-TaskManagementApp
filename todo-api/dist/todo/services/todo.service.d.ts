@@ -6,4 +6,7 @@ export declare class TodoService {
     constructor(todoRepository: Repository<Todo>);
     findAll(): Promise<TodoItem[]>;
     saveAll(todoItems: TodoItem[]): Promise<TodoItem[]>;
+    save(todoItem: TodoItem): Promise<TodoItem>;
+    updateMultiple(todoItems: TodoItem[]): Promise<TodoItem[]>;
+    update(todoItem: TodoItem): Promise<TodoItem>;
 }
