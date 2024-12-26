@@ -19,7 +19,7 @@ let DtoHelperService = class DtoHelperService {
     loginUserDtoToEntity(loginUserDto) {
         return {
             email: loginUserDto.email,
-            password: loginUserDto.password
+            password: loginUserDto.password,
         };
     }
 };

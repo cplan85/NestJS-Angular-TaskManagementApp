@@ -13,6 +13,7 @@ export const LOCALSTORAGE_KEY_NESTJS_TODO_APP = "nestjs_todo_app"
 
 export function tokenGetter() {
   if (typeof localStorage !== 'undefined') {
+    console.log(localStorage.getItem(LOCALSTORAGE_KEY_NESTJS_TODO_APP), "GETTING TOKEN FROM GETTER")
     return localStorage.getItem(LOCALSTORAGE_KEY_NESTJS_TODO_APP);
   }
   return null;

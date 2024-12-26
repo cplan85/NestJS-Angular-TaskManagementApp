@@ -9,17 +9,24 @@
 .urgencyEasy {
     border-left-color: rgb(122, 204, 28);
     box-shadow: rgba(78, 138, 10, 0.15) 0px 48px 100px 0px;
+
+    background: rgb(34,195,58);
+background: linear-gradient(90deg, rgba(34,195,58,0.07335434173669464) 0%, rgba(249,249,249,1) 14%);
 }
 
 .urgencyMedium {
 
     border-left-color: rgb(255, 240, 33);
     box-shadow: rgba(160, 131, 15, 0.15) 0px 48px 100px 0px;
+    background: rgb(194,195,34);
+background: linear-gradient(90deg, rgba(194,195,34,0.07335434173669464) 0%, rgba(255,255,255,1) 14%);
 }
 
 .urgencyUrgent {
     border-left-color: rgb(253, 28, 21);
     box-shadow: rgba(179, 47, 14, 0.15) 0px 48px 100px 0px;
+    background: rgb(195,34,34);
+background: linear-gradient(90deg, rgba(195,34,34,0.07335434173669464) 0%, rgba(255,255,255,1) 14%);
 }
 
 .done {

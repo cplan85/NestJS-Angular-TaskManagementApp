@@ -63,7 +63,6 @@ export class TodoGateway implements OnGatewayConnection, OnGatewayDisconnect {
     async onUpdateColumnTodos(socket: Socket, todoItems: TodoItem[]) {
       const updatedTodoItems: TodoItem[] = await this.todoService.updateMultiple(todoItems)
 
-
           //publish the new todoItem to all connected Users
     const connections: ConnectionI[] = await this.connectionService.findAll();
 

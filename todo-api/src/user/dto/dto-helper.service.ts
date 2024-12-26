@@ -17,7 +17,7 @@ export class DtoHelperService {
     loginUserDtoToEntity(loginUserDto: LoginUserDto): UserI {
         return {
             email: loginUserDto.email,
-            password: loginUserDto.password
+            password: loginUserDto.password,
         }
     }
 }

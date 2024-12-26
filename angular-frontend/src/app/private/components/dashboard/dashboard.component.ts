@@ -6,6 +6,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { TodoItem } from '../../private-module.interfaces';
 //import { todoExampleItems } from '../../private-module.constants';
 import { Observable, tap } from 'rxjs';
+import { UserService } from '../../../public/services/user-service/user.service';
 
 
 @Component({
@@ -24,8 +25,10 @@ export class DashboardComponent implements OnInit {
   doneItems: TodoItem[] = [];
 
   items$: Observable<TodoItem[]>;
+  userName: string = "";
+  defaultPic: string = 'https://res-console.cloudinary.com/db7iy9h6q/thumbnails/v1/image/upload/v1734613866/aXo2bXptODNnZmh1dmp2OXdiZmM/'
 
-  constructor(private todoService: TodoService, private matDialog: MatDialog) {
+  constructor(private todoService: TodoService, private matDialog: MatDialog, private userService: UserService) {
     this.items$ = this.todoService.todoItems$
   }
 
@@ -35,6 +38,9 @@ export class DashboardComponent implements OnInit {
     this.todoService.getAddedTodo();
     this.todoService.getUpdatedTodos();
     this.todoService.getUpdatedColumnTodos();
+    console.log(localStorage.getItem("Nest_JS_LoggedInUser"), "LOCAL STORAGE LOGGED IN USER")
+    this.userName = localStorage.getItem("Nest_JS_LoggedInUser")!;
+    console.log(this.userName, "USERNAME")
 
     this.items$.pipe(
       tap((items) => {
@@ -90,10 +96,6 @@ export class DashboardComponent implements OnInit {
 
 
     }
-
- 
-    //console.log("backlog",this.backlogItems, "todo", this.todoItems, "done",  this.doneItems)
-
 
 
     this.todoService.todoItems$.next([...this.backlogItems,...this.todoItems,...this.doneItems])

@@ -23,12 +23,19 @@ export class UserService {
     private snackbar: MatSnackBar,
     private JwtService: JwtHelperService
 
-  ) { }
+  ) {
+    console.log("USER SERVICE RUN")
+   }
+
+  loggedinUserName: string = "";
 
   login(user: UserI): Observable<LoginResponseI> {
     return this.httpclient.post<LoginResponseI>('api/users/login', user).pipe(
       tap((res: LoginResponseI) => localStorage.setItem(LOCALSTORAGE_KEY_NESTJS_TODO_APP, res.access_token)),
-      tap(() => this.snackbar.open('Login successful', 'Close', snackBarConfig)),
+      tap(() => {this.snackbar.open('Login successful', 'Close', snackBarConfig) 
+        localStorage.setItem("Nest_JS_LoggedInUser", user.email!)
+        console.log(user, "MY USER")
+      }),
       catchError(e => {
         this.snackbar.open(`${e.error.message}`, 'Close', snackBarConfig)
         return throwError(e);

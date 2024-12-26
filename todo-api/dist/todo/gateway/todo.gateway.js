@@ -30,7 +30,6 @@ let TodoGateway = class TodoGateway {
     }
     async onAddTodo(socket, todoItem) {
         const createTodoItem = await this.todoService.save(todoItem);
-        console.log("created todo Item Here - Carlos");
         const connections = await this.connectionService.findAll();
         for (const connection of connections) {
             this.server.to(connection.socketId).emit('addedTodo', createTodoItem);
@@ -38,7 +37,6 @@ let TodoGateway = class TodoGateway {
     }
     async onUpdateTodo(socket, todoItem) {
         const updatedTodoItem = await this.todoService.update(todoItem);
-        console.log(updatedTodoItem, "UPDATED TODO ITEM FROM BACKEND");
         const connections = await this.connectionService.findAll();
         for (const connection of connections) {
             this.server.to(connection.socketId).emit('updatedTodo', updatedTodoItem);

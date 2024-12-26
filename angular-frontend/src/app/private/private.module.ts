@@ -30,7 +30,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
   ]
 })
 export class PrivateModule { }
